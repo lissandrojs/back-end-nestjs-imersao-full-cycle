@@ -1,10 +1,20 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { RoutesModule } from './routes/routes.module';
+import { ListsModule } from './lists/lists.module';
+import { SequelizeModule } from '@nestjs/sequelize';
+import { List } from './lists/entities/list.entity';
 
 @Module({
-  imports: [RoutesModule],
+  imports: [
+    ListsModule,
+    SequelizeModule.forRoot({
+      dialect: 'sqlite',
+      host: 'memory',
+      autoLoadModels: true, // in development
+      models: [List],
+    }),
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
