@@ -12,15 +12,15 @@ export class ListsService {
   ) {}
 
   create(createListDto: CreateListDto) {
-    this.listModel.create(createListDto);
+    return this.listModel.create(createListDto);
   }
 
   findAll() {
-    return `This action returns all lists`;
+    return this.listModel.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} list`;
+    return this.listModel.findByPk(id);
   }
 
   update(id: number, updateListDto: UpdateListDto) {
